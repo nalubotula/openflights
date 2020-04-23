@@ -22,7 +22,7 @@ variable cluster_name {
 }
 
 variable resource_group_name {
-    default = "DevOps"
+    default = "k8ssredevops"
 }
 
 variable location {
