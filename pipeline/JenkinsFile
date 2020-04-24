@@ -47,7 +47,7 @@ pipeline {
             userRemoteConfigs: [[credentialsId: 'OPENFLIGHT-CREDS', url: 'https://github.com/nalubotula/openflightsdatasurge.git']]
         ])
         sh 'pwd'
-        sh 'python3.6 flightservice/app.py'
+     //   sh 'python3.6 flightservice/app.py'
        // sh 'docker --version'
 
       }
