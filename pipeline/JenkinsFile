@@ -1,7 +1,7 @@
-@Library(['github.com/shared-library']) _
+//@Library(['github.com/shared-library']) _
 
 pipeline {
-    
+
   agent any
 
   options {
