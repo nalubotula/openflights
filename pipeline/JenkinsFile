@@ -45,7 +45,8 @@ pipeline {
             extensions: [[$class: 'CleanCheckout']], 
             submoduleCfg: [], 
             userRemoteConfigs: [[credentialsId: 'OPENFLIGHT-CREDS', url: 'https://github.com/nalubotula/openflightsdatasurge.git']]
-    ]   )
+        ])
+        sh 'pwd'
        // sh 'docker --version'
 
       }
