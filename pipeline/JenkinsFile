@@ -38,6 +38,14 @@ pipeline {
         sh 'git --version'
         git branch: 'master', url: 'https://github.com/nalubotula/openflightsdatasurge.git'
         sh "ls -lat"
+        checkout([
+            $class: 'GitSCM', 
+            branches: [[name: '*/master']], 
+            doGenerateSubmoduleConfigurations: false, 
+            extensions: [[$class: 'CleanCheckout']], 
+            submoduleCfg: [], 
+            userRemoteConfigs: [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
+    ]   )
         sh 'docker --version'
 
       }
