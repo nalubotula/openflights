@@ -18,7 +18,8 @@ pipeline {
         // Clean the workspace
         echo 'Commissioning (AKS Cluster on Azure) .. '
         sh 'pwd'
-        
+        sh 'terraform --version'
+
       }
     }
 
