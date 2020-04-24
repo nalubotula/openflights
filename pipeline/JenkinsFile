@@ -24,7 +24,7 @@ pipeline {
       steps {
         // clone your project from Git/SVN etc
         echo 'Cloning project from Git/SVN etc .. '
-        
+
       }
     }
 
@@ -36,7 +36,7 @@ pipeline {
 
         echo 'Trigger other jenkins pipelines and copying artifact from that pipeline .. '
 
-        sh 'mvn clean'
+        sh 'docker -version'
 
       }
     }
