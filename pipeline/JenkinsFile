@@ -13,10 +13,12 @@ pipeline {
 
   stages {
 
-    stage('Clean Workspace') {
+    stage('Infrastructure commissioning (AKS Cluster on Azure)') {
       steps {
         // Clean the workspace
-        echo 'Clean the workspace .. '
+        echo 'Commissioning (AKS Cluster on Azure) .. '
+        sh 'pwd'
+        
       }
     }
 
@@ -24,17 +26,6 @@ pipeline {
       steps {
         // clone your project from Git/SVN etc
         echo 'Cloning project from Git/SVN etc .. '
-
-      }
-    }
-
-    stage('Build') {
-      steps {
-        // build, build stages can be made in parallel aswell
-        // build stage can call other stages
-        // can trigger other jenkins pipelines and copy artifact from that pipeline
-
-        echo 'Trigger other jenkins pipelines and copying artifact from that pipeline .. '
         sh 'git --version'
         git branch: 'master', url: 'https://github.com/nalubotula/openflightsdatasurge.git'
         sh "ls -lat"
@@ -46,6 +37,17 @@ pipeline {
             submoduleCfg: [], 
             userRemoteConfigs: [[credentialsId: 'OPENFLIGHT-CREDS', url: 'https://github.com/nalubotula/openflightsdatasurge.git']]
         ])
+      }
+    }
+
+    stage('Build') {
+      steps {
+        // build, build stages can be made in parallel aswell
+        // build stage can call other stages
+        // can trigger other jenkins pipelines and copy artifact from that pipeline
+
+        echo 'Trigger other jenkins pipelines and copying artifact from that pipeline .. '
+       
         sh 'pwd'
      //   sh 'python3.6 flightservice/app.py'
        // sh 'docker --version'
