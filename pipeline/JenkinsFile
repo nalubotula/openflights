@@ -44,9 +44,9 @@ pipeline {
             doGenerateSubmoduleConfigurations: false, 
             extensions: [[$class: 'CleanCheckout']], 
             submoduleCfg: [], 
-            userRemoteConfigs: [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
+            userRemoteConfigs: [[credentialsId: 'OPENFLIGHT-CREDS', url: 'https://github.com/nalubotula/openflightsdatasurge.git']]
     ]   )
-        sh 'docker --version'
+       // sh 'docker --version'
 
       }
     }
