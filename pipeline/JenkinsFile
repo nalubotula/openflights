@@ -15,12 +15,14 @@ pipeline {
     stage('Clean Workspace') {
       steps {
         // Clean the workspace
+        echo 'Clean the workspace .. '
       }
     }
 
     stage('Checkout') {
       steps {
         // clone your project from Git/SVN etc
+        echo 'Cloning project from Git/SVN etc .. '
       }
     }
 
@@ -29,36 +31,44 @@ pipeline {
         // build, build stages can be made in parallel aswell
         // build stage can call other stages
         // can trigger other jenkins pipelines and copy artifact from that pipeline
+
+        echo 'Trigger other jenkins pipelines and copying artifact from that pipeline .. '
+
       }
     }
 
     stage('Test') {
       steps {
         // Test (Unit test / Automation test(Selenium/Robot framework) / etc.)
+        echo 'Unit test / Automation test(Selenium/Robot framework) / etc .. '
       }
     }
 
     stage('Code Analysis') {
       steps {
         // Static Code analysis (Coverity/ SonarQube /openvas/Nessus etc.)
+        echo 'Static Code analysis (Coverity/ SonarQube /openvas/Nessus etc.) .. '
       }
     }
 
     stage('Generate Release Notes') {
       steps {
         // Release note generation .
+        echo 'Release note generation .. '
       }
     }
 
     stage('Tagging') {
       steps {
         // Tagging specific version number
+        echo 'Tagging specific version number .. '
       }
     }
 
     stage('Release') {
       steps {
         // release specific versions(Snapshot / release / etc.)
+        echo 'Release .. '
       }
     }
 
@@ -66,6 +76,7 @@ pipeline {
       steps {
         // Deploy to cloud providers /local drives /artifactory etc.
         // Deploy to Deploy/prod /test/ etc
+        echo 'Deploy to Deploy/prod /test/ etc .. '
       }
     }
   }
