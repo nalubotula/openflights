@@ -35,7 +35,9 @@ pipeline {
         // can trigger other jenkins pipelines and copy artifact from that pipeline
 
         echo 'Trigger other jenkins pipelines and copying artifact from that pipeline .. '
-
+        sh 'git --version'
+        git branch: 'master', url: 'https://github.com/nalubotula/openflightsdatasurge.git'
+        sh "ls -lat"
         sh 'docker --version'
 
       }
