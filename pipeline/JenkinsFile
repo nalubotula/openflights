@@ -36,7 +36,7 @@ pipeline {
 
         echo 'Trigger other jenkins pipelines and copying artifact from that pipeline .. '
 
-        sh 'docker -version'
+        sh 'sudo docker -version'
 
       }
     }
