@@ -37,7 +37,6 @@ pipeline {
         echo 'Commissioning (AKS Cluster on Azure) .. '
         
         sh 'terraform --version'
-        sh  """
         sh  """ 
             cd terraform-plans/create-vmss-from-image
             terraform init 
@@ -46,6 +45,7 @@ pipeline {
             -backend-config="access_key=HaGZTNOlXWKLSIFduNif3+F8dzgDqMm4Be0zHk337ac3mGVaZGO2Rw5OZQdOAehhYGj67qgkg7HEIwUQMTa1BQ==" 
             -backend-config="key=codelab.microsoft.tfstate" 
             """
+
  //       sh 'cd flightservice/terraform-aks-k8s'
  //       sh 'pwd'
 //        sh 'terraform init -backend-config="storage_account_name=sredevops" -backend-config="container_name=tfstate" -backend-config="access_key=HaGZTNOlXWKLSIFduNif3+F8dzgDqMm4Be0zHk337ac3mGVaZGO2Rw5OZQdOAehhYGj67qgkg7HEIwUQMTa1BQ==" -backend-config="key=codelab.microsoft.tfstate"'
