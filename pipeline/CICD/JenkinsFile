@@ -97,7 +97,9 @@ pipeline {
       steps {
         // Deploy to cloud providers /local drives /artifactory etc.
         // Deploy to Deploy/prod /test/ etc
-        echo 'Deploy to Deploy/prod /test/ etc .. '
+        echo 'Deploy the docker image from ACR to AKE CLuster .. '
+        sh "sudo kubectl get nodes"
+        sh "sudo kubectl apply -f deploy.yaml"
       }
     }
   }
