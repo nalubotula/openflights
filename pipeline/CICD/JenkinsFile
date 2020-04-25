@@ -17,9 +17,9 @@ pipeline {
       steps {
           // clone your project from Git/SVN etc
           echo 'Cloning project from Git/SVN etc .. '
-//        sh 'git --version'
-//        git branch: 'master', url: 'https://github.com/nalubotula/openflightsdatasurge.git'
-//        sh "ls -lat"
+          sh 'git --version'
+          git branch: 'master', url: 'https://github.com/nalubotula/openflightsdatasurge.git'
+          sh "ls -lat"
 //        checkout([
 //            $class: 'GitSCM', 
 //            branches: [[name: '*/master']], 
