@@ -45,7 +45,7 @@ pipeline {
      //   sh 'python3.6 flightservice/app.py'
         sh 'sudo docker --version'
         sh 'sudo docker ps'
-//        sh 'sudo docker build -t python-app flightservice/.'
+        sh 'sudo docker build -t airlines-app .'
         sh 'sudo docker images'
 
       }
