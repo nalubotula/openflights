@@ -15,19 +15,20 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        // clone your project from Git/SVN etc
-        echo 'Cloning project from Git/SVN etc .. '
-        sh 'git --version'
-        git branch: 'master', url: 'https://github.com/nalubotula/openflightsdatasurge.git'
-        sh "ls -lat"
-        checkout([
-            $class: 'GitSCM', 
-            branches: [[name: '*/master']], 
-            doGenerateSubmoduleConfigurations: false, 
-            extensions: [[$class: 'CleanCheckout']], 
-            submoduleCfg: [], 
-            userRemoteConfigs: [[credentialsId: 'OPENFLIGHT-CREDS', url: 'https://github.com/nalubotula/openflightsdatasurge.git']]
-        ])
+          // clone your project from Git/SVN etc
+          echo 'Cloning project from Git/SVN etc .. '
+//        sh 'git --version'
+//        git branch: 'master', url: 'https://github.com/nalubotula/openflightsdatasurge.git'
+//        sh "ls -lat"
+//        checkout([
+//            $class: 'GitSCM', 
+//            branches: [[name: '*/master']], 
+//            doGenerateSubmoduleConfigurations: false, 
+//            extensions: [[$class: 'CleanCheckout']], 
+//            submoduleCfg: [], 
+//            userRemoteConfigs: [[credentialsId: 'OPENFLIGHT-CREDS', url: 'https://github.com/nalubotula/openflightsdatasurge.git']]
+//        ])
+        
       }
     }
 
