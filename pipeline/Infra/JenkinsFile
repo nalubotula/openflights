@@ -35,7 +35,7 @@ pipeline {
       steps {
         // De-Commissioning Code will go here
         echo 'De-Commissioning .. '
-        
+      }
       }
 
      stage('Infrastructure commissioning (AKS Cluster on Azure)') {
