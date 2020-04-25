@@ -47,6 +47,11 @@ pipeline {
         sh  """ 
             cd flightservice/terraform-aks-k8s
             sudo terraform init -backend-config="storage_account_name=sredevops" -backend-config="container_name=tfstate" -backend-config="access_key=HaGZTNOlXWKLSIFduNif3+F8dzgDqMm4Be0zHk337ac3mGVaZGO2Rw5OZQdOAehhYGj67qgkg7HEIwUQMTa1BQ==" -backend-config="key=codelab.microsoft.tfstate" 
+            sudo terraform plan -out out.plan
+            sudo terraform apply out.plan
+            sudo echo "$(terraform output kube_config)" > ./azurek8s
+            sudo export KUBECONFIG=./azurek8s
+            sudo kubectl get nodes
             """
 
  //       sh 'cd flightservice/terraform-aks-k8s'
