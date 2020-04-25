@@ -55,6 +55,8 @@ pipeline {
       steps {
         // Test (Unit test / Automation test(Selenium/Robot framework) / etc.)
         echo 'Unit test / Automation test(Selenium/Robot framework) / etc .. '
+
+        sh 'sudo docker run airlines-app'
       }
     }
 
