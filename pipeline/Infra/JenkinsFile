@@ -57,57 +57,7 @@ pipeline {
       }
     }
 
-    stage('Build') {
-      steps {
-        // build, build stages can be made in parallel aswell
-        // build stage can call other stages
-        // can trigger other jenkins pipelines and copy artifact from that pipeline
-
-        echo 'Trigger other jenkins pipelines and copying artifact from that pipeline .. '
-       
-        sh 'pwd'
-     //   sh 'python3.6 flightservice/app.py'
-       // sh 'docker --version'
-
-      }
-    }
-
-    stage('Test') {
-      steps {
-        // Test (Unit test / Automation test(Selenium/Robot framework) / etc.)
-        echo 'Unit test / Automation test(Selenium/Robot framework) / etc .. '
-      }
-    }
-
-    stage('Code Analysis') {
-      steps {
-        // Static Code analysis (Coverity/ SonarQube /openvas/Nessus etc.)
-        echo 'Static Code analysis (Coverity/ SonarQube /openvas/Nessus etc.) .. '
-      }
-    }
-
-    stage('Generate Release Notes') {
-      steps {
-        // Release note generation .
-        echo 'Release note generation .. '
-      }
-    }
-
-    stage('Tagging') {
-      steps {
-        // Tagging specific version number
-        echo 'Tagging specific version number .. '
-      }
-    }
-
-    stage('Release') {
-      steps {
-        // release specific versions(Snapshot / release / etc.)
-        echo 'Release .. '
-      }
-    }
-
-    stage('Deploy') {
+  stage('Deploy') {
       steps {
         // Deploy to cloud providers /local drives /artifactory etc.
         // Deploy to Deploy/prod /test/ etc
