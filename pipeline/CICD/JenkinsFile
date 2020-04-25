@@ -55,7 +55,7 @@ pipeline {
       steps {
         // Test (Unit test / Automation test(Selenium/Robot framework) / etc.)
         echo 'Unit test / Automation test(Selenium/Robot framework) / etc .. '
-        sh 'sudo docker stop $(docker ps -a -q)'
+        sh 'sudo docker stop $(sudo docker ps -a -q)'
         sh 'sudo docker ps -q -a | xargs docker rm'
         sh 'sudo docker run --publish 8443:8443 --detach --name airlines airlines-app'
       }
