@@ -20,14 +20,7 @@ pipeline {
           sh 'git --version'
           git branch: 'master', url: 'https://github.com/nalubotula/openflightsdatasurge.git'
           sh "ls -lat"
-        checkout([
-            $class: 'GitSCM', 
-            branches: [[name: '*/master']], 
-            doGenerateSubmoduleConfigurations: false, 
-            extensions: [[$class: 'CleanCheckout']], 
-            submoduleCfg: [], 
-            userRemoteConfigs: [[credentialsId: 'OPENFLIGHT-CREDS', url: 'https://github.com/nalubotula/openflightsdatasurge.git']]
-        ])
+ 
         
       }
     }
@@ -41,6 +34,7 @@ pipeline {
         echo 'Build Docker Image from the Docker file .. '
        
         sh 'pwd'
+        sh 'whoami'
      //   sh 'python3.6 flightservice/app.py'
         sh 'docker --version'
     //    sh 'sudo docker build -t python-app flightservice/.'
