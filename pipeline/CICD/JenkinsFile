@@ -32,17 +32,18 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('Build Docker Image') {
       steps {
         // build, build stages can be made in parallel aswell
         // build stage can call other stages
         // can trigger other jenkins pipelines and copy artifact from that pipeline
 
-        echo 'Trigger other jenkins pipelines and copying artifact from that pipeline .. '
+        echo 'Build Docker Image from the Docker file .. '
        
         sh 'pwd'
      //   sh 'python3.6 flightservice/app.py'
-       // sh 'docker --version'
+        sh 'docker --version'
+        sh 'sudo docker build -t python-app flightservice/.'
 
       }
     }
