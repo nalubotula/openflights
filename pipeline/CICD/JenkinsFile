@@ -75,10 +75,13 @@ pipeline {
       }
     }
 
-    stage('Tagging') {
+    stage('Tagging and Publish to Container Repo') {
       steps {
         // Tagging specific version number
-        echo 'Tagging specific version number .. '
+        echo 'Tagging and Publish to Container Repo .. '
+
+        sh 'sudo docker tag airlines-app openflights.azurecr.io/airlines-app:v1'
+        sh 'sudo docker push openflights.azurecr.io/airlines-app:v1'
       }
     }
 
