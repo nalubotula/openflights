@@ -43,7 +43,7 @@ pipeline {
         sh 'pwd'
      //   sh 'python3.6 flightservice/app.py'
         sh 'docker --version'
-        sh 'sudo docker build -t python-app flightservice/.'
+    //    sh 'sudo docker build -t python-app flightservice/.'
 
       }
     }
