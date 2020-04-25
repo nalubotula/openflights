@@ -18,7 +18,7 @@ pipeline {
           // clone your project from Git/SVN etc
           echo 'Cloning project from Git/SVN etc .. '
           sh 'git --version'
-          git branch: 'master', url: 'https://github.com/nalubotula/openflightsdatasurge.git'
+          git branch: 'master', url: 'https://github.com/nalubotula/openflightsproj.git'
           sh "ls -lat"
 
           checkout([
@@ -27,7 +27,7 @@ pipeline {
               doGenerateSubmoduleConfigurations: false, 
               extensions: [[$class: 'CleanCheckout']], 
               submoduleCfg: [], 
-              userRemoteConfigs: [[credentialsId: 'OPENFLIGHT-CREDS', url: 'https://github.com/nalubotula/openflightsdatasurge.git']]
+              userRemoteConfigs: [[credentialsId: 'OPENFLIGHT-CREDS', url: 'https://github.com/nalubotula/openflightsproj.git']]
             ])
       }
     }
@@ -45,7 +45,7 @@ pipeline {
      //   sh 'python3.6 flightservice/app.py'
         sh 'sudo docker --version'
         sh 'sudo docker ps'
-        sh 'sudo docker build -t python-app flightservice/.'
+//        sh 'sudo docker build -t python-app flightservice/.'
         sh 'sudo docker images'
 
       }
