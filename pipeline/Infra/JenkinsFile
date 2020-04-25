@@ -45,7 +45,7 @@ pipeline {
         
         sh 'terraform --version'
         sh  """ 
-            cd terraform-plans/create-vmss-from-image
+            cd flightservice/terraform-aks-k8s
             sudo terraform init 
             -backend-config="storage_account_name=sredevops" 
             -backend-config="container_name=tfstate" 
