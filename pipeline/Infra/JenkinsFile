@@ -1,0 +1,138 @@
+@Library('Jenkins_Shared_Library') _
+import static groovy.json.JsonOutput.*
+
+pipeline {
+
+  agent any
+
+  options {
+    timeout(time: 60, unit: 'MINUTES')
+    timestamps()
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
+
+  stages {
+
+    stage('Checkout') {
+      steps {
+        // clone your project from Git/SVN etc
+        echo 'Cloning project from Git/SVN etc .. '
+        sh 'git --version'
+        git branch: 'master', url: 'https://github.com/nalubotula/openflightsdatasurge.git'
+        sh "ls -lat"
+        checkout([
+            $class: 'GitSCM', 
+            branches: [[name: '*/master']], 
+            doGenerateSubmoduleConfigurations: false, 
+            extensions: [[$class: 'CleanCheckout']], 
+            submoduleCfg: [], 
+            userRemoteConfigs: [[credentialsId: 'OPENFLIGHT-CREDS', url: 'https://github.com/nalubotula/openflightsdatasurge.git']]
+        ])
+      }
+    }
+
+     stage('Infrastructure commissioning (AKS Cluster on Azure)') {
+      steps {
+        // Clean the workspace
+        echo 'Commissioning (AKS Cluster on Azure) .. '
+        
+        sh 'terraform --version'
+        sh  """ 
+            cd terraform-plans/create-vmss-from-image
+            terraform init 
+            -backend-config="storage_account_name=sredevops" 
+            -backend-config="container_name=tfstate" 
+            -backend-config="access_key=HaGZTNOlXWKLSIFduNif3+F8dzgDqMm4Be0zHk337ac3mGVaZGO2Rw5OZQdOAehhYGj67qgkg7HEIwUQMTa1BQ==" 
+            -backend-config="key=codelab.microsoft.tfstate" 
+            """
+
+ //       sh 'cd flightservice/terraform-aks-k8s'
+ //       sh 'pwd'
+//        sh 'terraform init -backend-config="storage_account_name=sredevops" -backend-config="container_name=tfstate" -backend-config="access_key=HaGZTNOlXWKLSIFduNif3+F8dzgDqMm4Be0zHk337ac3mGVaZGO2Rw5OZQdOAehhYGj67qgkg7HEIwUQMTa1BQ==" -backend-config="key=codelab.microsoft.tfstate"'
+//        sh '/flightservice/terraform-aks-k8s/terraform plan -out out.plan'
+ //       sh 'terraform apply /flightservice/terraform-aks-k8s/out.plan'
+ //       sh 'echo "$(terraform output kube_config)" > ./azurek8s'
+ //       sh 'export KUBECONFIG=./azurek8s'
+ //       sh 'kubectl get nodes'
+      }
+    }
+
+    stage('Build') {
+      steps {
+        // build, build stages can be made in parallel aswell
+        // build stage can call other stages
+        // can trigger other jenkins pipelines and copy artifact from that pipeline
+
+        echo 'Trigger other jenkins pipelines and copying artifact from that pipeline .. '
+       
+        sh 'pwd'
+     //   sh 'python3.6 flightservice/app.py'
+       // sh 'docker --version'
+
+      }
+    }
+
+    stage('Test') {
+      steps {
+        // Test (Unit test / Automation test(Selenium/Robot framework) / etc.)
+        echo 'Unit test / Automation test(Selenium/Robot framework) / etc .. '
+      }
+    }
+
+    stage('Code Analysis') {
+      steps {
+        // Static Code analysis (Coverity/ SonarQube /openvas/Nessus etc.)
+        echo 'Static Code analysis (Coverity/ SonarQube /openvas/Nessus etc.) .. '
+      }
+    }
+
+    stage('Generate Release Notes') {
+      steps {
+        // Release note generation .
+        echo 'Release note generation .. '
+      }
+    }
+
+    stage('Tagging') {
+      steps {
+        // Tagging specific version number
+        echo 'Tagging specific version number .. '
+      }
+    }
+
+    stage('Release') {
+      steps {
+        // release specific versions(Snapshot / release / etc.)
+        echo 'Release .. '
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        // Deploy to cloud providers /local drives /artifactory etc.
+        // Deploy to Deploy/prod /test/ etc
+        echo 'Deploy to Deploy/prod /test/ etc .. '
+      }
+    }
+  }
+
+  post {
+    success {
+      echo "SUCCESS"
+    }
+    failure {
+      echo "FAILURE"
+    }
+    changed {
+      echo "Status Changed: [From: $currentBuild.previousBuild.result, To: $currentBuild.result]"
+    }
+    always {
+      script {
+        def result = currentBuild.result
+        if (result == null) {
+          result = "SUCCESS"
+        }
+      }
+    }
+  }
+}
